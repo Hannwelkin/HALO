@@ -1,0 +1,11 @@
+{
+  "PATH": {
+    "SINGULARITY_IMAGE": "None",
+    "CC_REPO": "'/home/hany/softwares/chemical_checker'",
+    "CC_TMP": "'/home/hany/projects/cc_ml/training_data/cc/S1.001'"
+  },
+  "TOOLS": {
+    "node2vec_exec": "'/home/hany/softwares/snap/examples/node2vec/node2vec'",
+    "snap": "'/home/hany/softwares/snap'"
+  }
+}

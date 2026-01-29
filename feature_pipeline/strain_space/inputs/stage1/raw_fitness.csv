@@ -1,0 +1,104 @@
+drug,3_letter_code,inchikey,escherichia coli bw25113,escherichia coli iai1,salmonella typhimurium lt2,salmonella typhimurium 14028,pseudomonas aeruginosa pao1,pseudomonas aeruginosa pa14,bacillus subtilis,staphylococcus aureus dsm 20231,staphylococcus aureus newman,streptococcus pneumoniae
+spiramycin,spm,actoxuheucptew-ceuobaopsa-n,0.73,0.79,0.8,0.84,0.86,0.88,,,,
+clarithromycin,clr,agoydepgaoxock-kcbohyoisa-n,0.45,0.57,0.6,0.54,0.36,0.44,0.4,0.47,0.39,0.34
+doxorubicin,dxr,aojjsuzboxzqnb-tzssrymlsa-n,0.81,0.86,0.81,0.84,0.9,0.91,0.85,0.92,0.82,0.92
+auranofin,aur,aujrcfubupvwsz-xtzhgvarsa-m,,,,,,,0.32,0.37,0.66,0.31
+teicoplanin,tec,bjnllbuohpvgft-cayrisatsa-n,0.88,0.88,0.85,0.87,0.82,0.83,0.76,0.99,0.87,0.34
+acetylsalisylic acid,asa,bsynrymutxbxsq-uhfffaoysa-n,0.68,0.75,0.67,0.89,0.78,0.84,0.64,0.73,0.7,0.93
+mecillinam,mec,bwwvaeolvktzfq-ntznesfssa-n,0.0,0.0,0.0,0.0,0.9,0.91,,,,
+miconazole,mcz,byblewfaakgycd-uhfffaoysa-n,,,,,,,0.71,0.63,0.73,0.94
+gentamicin,gen,ceazrrdelhuemr-uhfffaoysa-n,0.01,0.67,0.0,0.5,0.0,0.0,0.57,0.71,0.9,0.95
+bacitracin,bac,clkofpxjlqsyah-abrjdsqdsa-n,0.73,0.79,0.83,0.78,0.9,0.91,0.8,0.17,0.27,0.48
+virginiamycin m1,vir,daikhdnsxmzdcu-fqtgfapksa-n,,,,,,,0.98,0.93,0.94,0.98
+diclofenac,dic,dcopuumxtxdbnb-uhfffaoysa-n,0.97,0.97,0.97,0.99,0.96,0.99,,,,
+clortetracycline,ctc,dhprqbpjlmkorj-xrnkamncsa-n,,,,,,,0.73,0.41,0.29,0.39
+meropenem,mem,dmjnnhooluxybv-pqtsnvlcsa-n,0.09,0.12,0.0,0.0,0.0,0.0,,,,
+daptomycin,dap,doaklvkfurwedj-qcmazarjsa-n,0.84,0.89,0.88,0.9,0.88,0.9,0.92,0.97,0.99,0.88
+cycloserine d,dcs,dydcuqkucuhjbh-uwtatzphsa-n,0.58,0.67,0.89,0.0,0.86,0.84,0.97,0.97,0.97,0.77
+moxifloxacin,mxf,fabprxsrwadjsp-meduhntesa-n,0.0,0.04,0.64,0.0,0.96,0.67,0.06,0.77,0.52,0.73
+methotrexate,mtx,fbozxeclqnjbkd-zdusscgksa-n,,,,,,,,0.8,,
+chir-90,chir90,fqybtyfkohpwqt-vgswgcgisa-n,0.0,0.18,0.0,0.45,0.99,0.0,,,,
+fluorouracil,5fu,ghasvsinzrgabv-uhfffaoysa-n,,,,,,,,0.74,,
+chlorhexidine,chg,ghxztyhsjhqhij-uhfffaoysa-n,0.0,0.12,0.85,0.83,0.0,0.0,,,,
+clomiphene,clm,gkirpkyjqbwngo-uhfffaoysa-n,,,,,,,,0.44,,
+cefotaxime,ctx,gprbekhldvquje-qswimtsfsa-n,0.57,0.39,0.71,0.79,0.0,0.76,0.32,0.8,0.42,0.95
+levofloxacin,lcx,gsdswsvvblhkdq-jtqlqieisa-n,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.59,0.49,0.79
+ibuprofen,ibu,hefnnwsxxwatrw-uhfffaoysa-n,,,,,,,,0.82,,
+diflunisal,dfl,hupfgzxomwlgnk-uhfffaoysa-n,,,,,,,,0.47,,
+cefepime,fep,hvflcnvbzffhbt-zkdacbomsa-n,,,,,,,0.7,0.94,0.89,0.94
+fusidic acid,fus,iecpwnumdgfdkc-mzjaqbgesa-n,0.56,0.43,0.86,0.73,0.83,0.84,0.48,0.35,0.26,0.73
+trimethoprim,tmp,iedvjhcemcrbqm-uhfffaoysa-n,0.49,0.46,0.53,0.46,0.83,0.85,0.43,0.43,0.54,0.54
+piperacillin,pip,ivbhgbmcvldmku-gxnbugajsa-n,0.8,0.68,0.6,0.62,0.0,0.0,,,,
+cefuroxime,cxa,jfpvxvdwjqmjee-izrzkjbusa-n,,,,,,,0.43,0.83,0.95,0.29
+penicillin g,pen,jgsarldlijgvte-mbnywofbsa-n,0.8,0.67,0.62,0.62,0.93,0.91,0.43,0.38,0.9,0.66
+sulfamethoxazol,smx,jlkigftwxxrpmt-uhfffaoysa-n,,,,,,,0.95,0.96,0.98,0.95
+rifampicin,rif,jqxxhwhpunpdrt-wlsiykjhsa-n,0.41,0.0,0.17,0.0,0.0,0.87,0.79,0.64,0.4,0.5
+clindamycin,cli,kdlrvyvgxiqjdk-awpvfwjpsa-n,0.78,0.76,0.6,0.64,0.87,0.9,0.58,0.24,0.41,0.57
+omeprazole,ome,kworuugoslyagd-uhfffaoysa-n,,,,,,,,0.98,,
+telithromycin,tel,ljvajpdwbabpej-pnuffhfmsa-n,,,,,,,0.41,0.37,0.35,0.37
+amikacin,amk,lkcwbdhbtvxhdl-rmdfuyiesa-n,0.0,0.77,0.36,0.72,0.0,0.0,,,,
+amoxicillin,amx,lsqzjlsuydqpkj-njbdsqktsa-n,0.45,0.0,0.84,0.76,0.89,0.92,0.33,0.37,0.87,0.93
+a22,a22,lztcfldzlboldw-uhfffaoysa-n,0.0,0.31,0.55,0.51,0.85,0.52,,,,
+procaine,prc,mfdferrihvxmiy-uhfffaoysa-n,0.42,0.5,0.4,0.26,0.2,0.38,0.94,0.97,0.97,0.97
+thymol,thy,mgsrczkzvobkft-uhfffaoysa-n,,,,,,,,0.94,,
+pseudomonic acid,psa,mindhvhhqzyeek-hbbnesrfsa-n,0.71,0.6,0.72,0.84,,,0.38,0.48,0.05,0.73
+azithromycin,azm,mqtosjvfkkjcrp-bicopxkesa-n,0.51,0.61,0.34,0.53,0.73,0.55,0.71,0.7,0.78,0.35
+vanillin,vnl,mwoogojbhiarfg-uhfffaoysa-n,0.85,0.85,0.86,0.79,0.69,0.75,,,,
+vancomycin,van,mypyjxkwctuito-lyrmylqwsa-n,,,,,,,0.42,0.98,0.97,0.65
+ciprofloxacin,cip,myswguaqzajsok-uhfffaoysa-n,0.0,0.0,0.0,0.0,0.0,0.0,0.67,0.6,0.47,0.84
+tamoxifene,tam,nkanxqfjjicgdu-qplcgjkrsa-n,,,,,,,,0.96,,
+tobramycin,tob,nlvfbuxfdbbnbw-pbsuhmdjsa-n,0.0,0.83,0.0,0.85,0.0,0.0,,,,
+nisin,nsn,nvnlliyoarqcix-gsjozigcsa-n,0.83,0.92,0.85,0.87,0.84,0.88,0.44,0.66,0.75,0.24
+mitomycin c,mmc,nwibshfkijfrco-wudykrtcsa-n,0.34,0.0,0.33,0.54,0.4,0.0,0.31,0.7,0.64,0.78
+nitrofurantoin,nit,nxfqhrvnioxgaq-ycrremrbsa-n,0.55,0.4,0.75,0.81,0.35,0.71,0.38,0.59,0.74,0.85
+ticagrelor,tic,oekwjqxrcdyshl-fnoidjsqsa-n,,,,,,,,0.83,,
+lincomycin,lin,ojmmvqqutaewlp-kidudljlsa-n,,,,,,,0.95,0.6,0.83,0.46
+bleomycin,blm,oyvagsvqbohsss-wxfszrtfsa-o,0.34,0.28,0.47,0.77,0.91,0.88,,,,
+hexestrol,hex,pbbgszcbwvpool-hdicaceksa-n,,,,,,,,0.83,,
+promethazine,pro,pwwvaxiegoywee-uhfffaoysa-n,,,,,,,,0.98,,
+phleomycin,plm,qrblkghrwfgine-ugwagolrsa-n,0.17,0.16,0.0,0.54,1.0,1.0,0.6,0.56,0.3,0.97
+cefaclor,cec,qyiyflotgylrgg-gpccphfnsa-n,0.47,0.55,0.0,0.0,0.9,0.92,,,,
+quercetin,que,refjwtpedvjjiy-uhfffaoysa-n,,,,,,,,0.99,,
+nonactin,non,rmixhjpmnbxmbu-qiixehpysa-n,0.88,0.89,0.93,0.91,0.81,0.83,,,,
+puromycin,pur,rxwncpjzocpepq-nvwddtsbsa-n,0.63,0.0,0.78,0.72,0.78,0.77,0.94,0.91,0.97,0.83
+caffeine,caf,ryyvlzvuvijvgh-uhfffaoysa-n,0.85,0.88,0.84,0.86,0.85,0.85,,0.88,,
+celecoxib,cel,rzekvgvhfleqil-uhfffaoysa-n,,,,,,,,0.94,,
+ciclopirox,cpo,sckyraxsedypsa-uhfffaoysa-n,0.27,0.15,0.3,0.27,0.58,0.75,,,,
+doxycycline,dox,sgkrlcuyixiahr-akngssgzsa-n,0.42,0.0,0.55,0.4,0.85,0.5,0.74,0.5,0.28,0.79
+tigecycline,tgc,sovuoxkzccawoj-hjyubdrysa-n,0.84,0.89,0.88,0.88,0.72,0.87,0.99,0.75,0.98,0.95
+cefsulodin,cfs,sylkglmblaagsc-qlvmhmetsa-n,0.62,0.86,0.82,0.89,0.0,0.0,,,,
+diacerein,dia,tynlgdbujlvsma-uhfffaoysa-n,,,,,,,,0.9,,
+linezolid,lzd,tyzrovqlwokykf-zdusscgksa-n,0.88,0.88,0.85,0.89,0.8,0.83,0.36,0.49,0.4,0.49
+streptomycin,str,ucsjyzpvakxknq-hzyvhmacsa-n,,,,,,,0.56,0.74,0.81,0.91
+cccp,cccp,ugtjljzqqfgtjd-uhfffaoysa-n,0.26,0.04,0.61,0.37,0.85,0.85,0.61,0.51,0.46,0.67
+erythromycin,eri,ulgzdmovfrhvep-rwjqbgpgsa-n,0.54,0.65,0.52,0.49,0.61,0.59,0.48,0.37,0.35,0.41
+spectinomycin,spt,unfwwihtnxnpbv-wxkvuwsesa-n,0.51,0.53,0.58,0.66,0.72,0.67,0.97,0.82,0.84,0.89
+oxacillin,oxa,uwyhmgvutgawsp-jkifevaisa-n,0.78,0.83,0.85,0.86,0.88,0.93,0.75,0.75,0.72,0.84
+metronidazole,mtz,vaocpamslunlgc-uhfffaoysa-n,0.81,0.86,0.85,0.85,0.86,0.85,0.99,0.99,0.97,0.99
+curcumin,ccm,vfldpwhfbuoddf-fcxrpnkrsa-n,0.89,0.91,0.99,1.0,0.55,0.77,,,,
+oritavancin,ori,vhfgebvphagqpi-lxkzptcjsa-n,,,,,,,0.24,0.31,0.41,0.36
+estradiol,est,voxzdwnpvjitmn-zbrfxrbcsa-n,,,,,,,,0.95,,
+benzalkonium,bzk,vvzbfokbsdgvgz-uhfffaoysa-n,0.0,0.0,0.65,0.7,0.0,0.0,0.64,0.9,0.93,0.81
+clofazimine,clo,wdqpamhffcxsnu-uhfffaoysa-n,0.88,0.9,0.9,0.9,0.82,0.83,,,,
+benzbromarone,bbm,whqchucqkniqec-uhfffaoysa-n,,,,,,,,0.64,,
+chloramphenicol,chl,wiizwvcijkgzok-rkdxnwhrsa-n,0.51,0.0,0.63,0.63,0.87,0.0,0.65,0.47,0.5,0.52
+egcg,egcg,wmbwrepuvvbilr-wiyylymnsa-n,0.8,0.76,0.88,0.8,0.46,0.7,0.69,0.83,0.78,0.95
+sulfamonomethoxine,smm,wmpxpuypyqkqcx-uhfffaoysa-n,0.88,0.88,0.85,0.88,0.77,0.81,,,,
+polymyxin b,pmb,wqvjhhacxvlgbl-bpjdfbqwsa-n,0.29,0.79,0.84,0.85,0.76,0.08,,,,
+minocycline,min,wtjxvdpdeqktcv-vqaitoiosa-n,0.7,0.66,0.82,0.71,0.0,0.0,,,,
+aztreonam,atm,wzpbzjondbgpkj-vehqqrbssa-n,0.0,0.0,0.0,0.0,0.0,0.0,,,,
+triclosan,tri,xefqlinvkfyrcs-uhfffaoysa-n,1.0,1.0,0.98,1.0,0.97,0.99,0.58,0.67,0.45,0.82
+tedizolid,tzd,xfalpsljihvrke-gfccvegcsa-n,,,,,,,0.78,0.65,0.67,0.72
+gefitinib,gef,xgallcvxezpnrq-uhfffaoysa-n,,,,,,,,0.95,,
+loxapine,lox,xjgvxqduiwgirw-uhfffaoysa-n,,,,,,,,0.97,,
+metformin,mf,xzwyzxlipxdolr-uhfffaoysa-n,0.54,0.27,0.67,0.63,0.48,0.58,,,,
+berberine,bbr,ybhilyktiriute-uhfffaoysa-n,0.8,0.85,0.9,0.89,0.76,0.88,,,,
+tolfenamic,tol,yeznlouzaiomlt-uhfffaoysa-n,,,,,,,,0.63,,
+novobiocin,nvb,yjqpygghqpgbli-kgsxxdossa-n,0.45,0.0,0.85,0.28,0.86,0.91,0.91,0.67,0.52,0.56
+colistin,cst,ykqoskadjpqzhb-rgysvoegsa-n,0.84,0.97,0.99,0.92,0.0,0.0,,,,
+fosfomycin,fof,ymdxzjfxqjvxbf-sthayslisa-n,0.39,0.49,0.65,0.77,0.0,0.0,0.62,0.69,0.45,0.9
+pyocyanin,pyo,yncmlfhhxwetld-uhfffaoysa-n,0.25,0.0,0.69,0.81,,,0.85,0.81,0.7,0.96
+cephalexin,lex,zaipmknfioowcq-uekvphqbsa-n,0.84,0.88,0.86,0.87,0.9,0.9,0.95,0.99,1.0,0.61
+chlorpromazine,cpr,zpeimtdsqakgnt-uhfffaoysa-n,,,,,,,,0.94,,
+streptozotocin,stz,zsjlqepllkmakr-gkhcufpysa-n,0.84,0.79,0.55,0.7,1.0,0.98,1.0,0.82,0.69,0.96
+imipenem,ipm,zskvgtpcrgianv-zxflcmhbsa-n,0.28,0.44,0.07,0.0,0.0,0.0,0.69,0.7,0.45,0.93

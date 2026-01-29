@@ -1,0 +1,1 @@
+{"nodes": 82, "edges": 435, "zeroNodes": 0, "zeroInNodes": 3, "zeroOutNodes": 0, "nonZIODegNodes": 0, "Degree_min": 3, "Degree_max": 35, "Degree_25": 5.0, "Degree_50": 7.0, "Degree_75": 8.0, "Weight_min": 0.001, "Weight_max": 0.7525, "Weight_25": 0.001, "Weight_50": 0.001, "Weight_75": 0.7525, "WccSz": 1.0, "SccSz": 0.2804878048780488}
