@@ -11,3 +11,6 @@
 # python
 __pycache__/
 *.pyc
+# generated results
+results/
+
