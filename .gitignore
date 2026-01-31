@@ -14,3 +14,24 @@ __pycache__/
 # generated results
 results/
 
+
+# ---- generated outputs / experiment artifacts ----
+results/
+**/results/
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.npz
+*.npy
+
+# OS / misc
+.DS_Store
+__pycache__/
+*.pyc
