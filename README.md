@@ -11,6 +11,7 @@ The repository contains the full pipeline used in the study, including:
 ---
 
 ## Repository structure
+```text
 HALO_repo/
 ├── src/
 ├── data/
@@ -22,6 +23,7 @@ HALO_repo/
 ├── figures/
 ├── paper/
 └── README.md
+```
 
 
 
@@ -106,7 +108,7 @@ This project relies on the **Chemical Checker** framework.
 You must install it separately:
 ```bash
 git clone https://github.com/sbnb-irb/chemical_checker.git
-‍‍‍‍‍‍```
+```
 
 Set the environment variable CC_CONFIG to point to a local cc_config.json file before running strain-space construction:
 `export CC_CONFIG=/path/to/cc_config.json`
