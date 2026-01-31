@@ -1,0 +1,319 @@
+
+=== EXP06d: LGBM bin + reduced CC-only elementwise from exp05d (CV1, bliss=±0.05) + nested CV, 5-fold outer ===
+
+Using scheme: CV1
+Input  file: /home/hannie/cc_ml/models/results/exp05d_lgbm_bin_nosspace_elementwise_featselect_bliss005/elementwise_features_filtered_cv1_cc_only.csv
+Output dir : /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005
+Loaded reduced df shape: (2976, 1588)
+Interaction Type
+antagonism    1498
+synergy       1478
+Name: count, dtype: int64
+
+After filtering to synergy/antagonism: (2976, 1588)
+Interaction Type
+antagonism    1498
+synergy       1478
+Name: count, dtype: int64
+
+Total samples: 2976
+Reduced feature columns (CC-only): 1578
+========================================================================
+CV1 outer fold 1/5 (Drug Pair grouping):
+Train size: 2337 (78.53%)
+Test size : 639 (21.47%)
+Test + Train set: 2976
+------------------------------------------------------------------------
+========================================================================
+CV1 outer fold 2/5 (Drug Pair grouping):
+Train size: 2371 (79.67%)
+Test size : 605 (20.33%)
+Test + Train set: 2976
+------------------------------------------------------------------------
+========================================================================
+CV1 outer fold 3/5 (Drug Pair grouping):
+Train size: 2400 (80.65%)
+Test size : 576 (19.35%)
+Test + Train set: 2976
+------------------------------------------------------------------------
+========================================================================
+CV1 outer fold 4/5 (Drug Pair grouping):
+Train size: 2399 (80.61%)
+Test size : 577 (19.39%)
+Test + Train set: 2976
+------------------------------------------------------------------------
+========================================================================
+CV1 outer fold 5/5 (Drug Pair grouping):
+Train size: 2397 (80.54%)
+Test size : 579 (19.46%)
+Test + Train set: 2976
+------------------------------------------------------------------------
+
+########################################################################
+########## OUTER FOLD 1/5 ##########
+########################################################################
+
+
+--- Nested CV (outer fold 1): inner search over 32 configs ---
+Best inner-CV ACC (fold 1): 0.729
+Best params: {'boosting_type': 'gbdt', 'learning_rate': 0.03, 'max_depth': 3, 'num_leaves': 15, 'min_data_in_leaf': 200, 'feature_fraction': 0.5, 'bagging_fraction': 0.7, 'bagging_freq': 1, 'lambda_l2': 38.47953834780356, 'lambda_l1': 0.0, 'max_bin': 63, 'min_gain_to_split': 0.1}
+Saved per-fold feature importances to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1_fold1.csv
+
+=== Held-out Test (CC-only, fold 1) ===
+ROC AUC : 0.805
+Acc     : 0.723
+F1 (w)  : 0.723
+
+Confusion matrix:
+ [[243  94]
+ [ 83 219]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.75      0.72      0.73       337
+     synergy       0.70      0.73      0.71       302
+
+    accuracy                           0.72       639
+   macro avg       0.72      0.72      0.72       639
+weighted avg       0.72      0.72      0.72       639
+
+
+--- Metrics for Log (outer fold 1 ) ---
+accuracy_test=0.7230
+f1_macro_test=0.7226
+f1_weighted_test=0.7232
+roc_auc_test=0.8047
+precision_antag=0.7454
+recall_antag=0.7211
+f1_antag=0.7330
+precision_syn=0.6997
+recall_syn=0.7252
+f1_syn=0.7122
+
+=== Overfitting check (CC-only, outer fold 1 ) ===
+Train AUC: 0.981 | Test AUC: 0.805
+Train Acc: 0.908 | Test Acc: 0.723
+Train F1w: 0.908 | Test F1w: 0.723
+
+Saved per-fold confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1_fold1.png
+
+########################################################################
+########## OUTER FOLD 2/5 ##########
+########################################################################
+
+
+--- Nested CV (outer fold 2): inner search over 32 configs ---
+Best inner-CV ACC (fold 2): 0.730
+Best params: {'boosting_type': 'gbdt', 'learning_rate': 0.03, 'max_depth': 3, 'num_leaves': 7, 'min_data_in_leaf': 200, 'feature_fraction': 0.3, 'bagging_fraction': 0.8, 'bagging_freq': 1, 'lambda_l2': 33.47293451760556, 'lambda_l1': 0.0, 'max_bin': 127, 'min_gain_to_split': 0.1}
+Saved per-fold feature importances to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1_fold2.csv
+
+=== Held-out Test (CC-only, fold 2) ===
+ROC AUC : 0.829
+Acc     : 0.752
+F1 (w)  : 0.752
+
+Confusion matrix:
+ [[240  78]
+ [ 72 215]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.77      0.75      0.76       318
+     synergy       0.73      0.75      0.74       287
+
+    accuracy                           0.75       605
+   macro avg       0.75      0.75      0.75       605
+weighted avg       0.75      0.75      0.75       605
+
+
+--- Metrics for Log (outer fold 2 ) ---
+accuracy_test=0.7521
+f1_macro_test=0.7516
+f1_weighted_test=0.7522
+roc_auc_test=0.8294
+precision_antag=0.7692
+recall_antag=0.7547
+f1_antag=0.7619
+precision_syn=0.7338
+recall_syn=0.7491
+f1_syn=0.7414
+
+=== Overfitting check (CC-only, outer fold 2 ) ===
+Train AUC: 0.979 | Test AUC: 0.829
+Train Acc: 0.902 | Test Acc: 0.752
+Train F1w: 0.902 | Test F1w: 0.752
+
+Saved per-fold confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1_fold2.png
+
+########################################################################
+########## OUTER FOLD 3/5 ##########
+########################################################################
+
+
+--- Nested CV (outer fold 3): inner search over 32 configs ---
+Best inner-CV ACC (fold 3): 0.714
+Best params: {'boosting_type': 'gbdt', 'learning_rate': 0.03, 'max_depth': 3, 'num_leaves': 15, 'min_data_in_leaf': 200, 'feature_fraction': 0.5, 'bagging_fraction': 0.8, 'bagging_freq': 1, 'lambda_l2': 28.789842474135956, 'lambda_l1': 0.5, 'max_bin': 63, 'min_gain_to_split': 0.2}
+Saved per-fold feature importances to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1_fold3.csv
+
+=== Held-out Test (CC-only, fold 3) ===
+ROC AUC : 0.826
+Acc     : 0.753
+F1 (w)  : 0.754
+
+Confusion matrix:
+ [[224  77]
+ [ 65 210]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.78      0.74      0.76       301
+     synergy       0.73      0.76      0.75       275
+
+    accuracy                           0.75       576
+   macro avg       0.75      0.75      0.75       576
+weighted avg       0.75      0.75      0.75       576
+
+
+--- Metrics for Log (outer fold 3 ) ---
+accuracy_test=0.7535
+f1_macro_test=0.7533
+f1_weighted_test=0.7536
+roc_auc_test=0.8256
+precision_antag=0.7751
+recall_antag=0.7442
+f1_antag=0.7593
+precision_syn=0.7317
+recall_syn=0.7636
+f1_syn=0.7473
+
+=== Overfitting check (CC-only, outer fold 3 ) ===
+Train AUC: 0.978 | Test AUC: 0.826
+Train Acc: 0.903 | Test Acc: 0.753
+Train F1w: 0.903 | Test F1w: 0.754
+
+Saved per-fold confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1_fold3.png
+
+########################################################################
+########## OUTER FOLD 4/5 ##########
+########################################################################
+
+
+--- Nested CV (outer fold 4): inner search over 32 configs ---
+Best inner-CV ACC (fold 4): 0.723
+Best params: {'boosting_type': 'gbdt', 'learning_rate': 0.03, 'max_depth': 3, 'num_leaves': 15, 'min_data_in_leaf': 200, 'feature_fraction': 0.5, 'bagging_fraction': 0.8, 'bagging_freq': 1, 'lambda_l2': 52.534465416259174, 'lambda_l1': 0.1, 'max_bin': 63, 'min_gain_to_split': 0.05}
+Saved per-fold feature importances to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1_fold4.csv
+
+=== Held-out Test (CC-only, fold 4) ===
+ROC AUC : 0.823
+Acc     : 0.731
+F1 (w)  : 0.732
+
+Confusion matrix:
+ [[189  64]
+ [ 91 233]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.68      0.75      0.71       253
+     synergy       0.78      0.72      0.75       324
+
+    accuracy                           0.73       577
+   macro avg       0.73      0.73      0.73       577
+weighted avg       0.74      0.73      0.73       577
+
+
+--- Metrics for Log (outer fold 4 ) ---
+accuracy_test=0.7314
+f1_macro_test=0.7298
+f1_weighted_test=0.7323
+roc_auc_test=0.8231
+precision_antag=0.6750
+recall_antag=0.7470
+f1_antag=0.7092
+precision_syn=0.7845
+recall_syn=0.7191
+f1_syn=0.7504
+
+=== Overfitting check (CC-only, outer fold 4 ) ===
+Train AUC: 0.977 | Test AUC: 0.823
+Train Acc: 0.901 | Test Acc: 0.731
+Train F1w: 0.901 | Test F1w: 0.732
+
+Saved per-fold confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1_fold4.png
+
+########################################################################
+########## OUTER FOLD 5/5 ##########
+########################################################################
+
+
+--- Nested CV (outer fold 5): inner search over 32 configs ---
+Best inner-CV ACC (fold 5): 0.713
+Best params: {'boosting_type': 'gbdt', 'learning_rate': 0.02, 'max_depth': 3, 'num_leaves': 9, 'min_data_in_leaf': 200, 'feature_fraction': 0.5, 'bagging_fraction': 0.7, 'bagging_freq': 1, 'lambda_l2': 41.60956056707918, 'lambda_l1': 0.5, 'max_bin': 127, 'min_gain_to_split': 0.1}
+Saved per-fold feature importances to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1_fold5.csv
+
+=== Held-out Test (CC-only, fold 5) ===
+ROC AUC : 0.827
+Acc     : 0.769
+F1 (w)  : 0.768
+
+Confusion matrix:
+ [[233  56]
+ [ 78 212]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.75      0.81      0.78       289
+     synergy       0.79      0.73      0.76       290
+
+    accuracy                           0.77       579
+   macro avg       0.77      0.77      0.77       579
+weighted avg       0.77      0.77      0.77       579
+
+
+--- Metrics for Log (outer fold 5 ) ---
+accuracy_test=0.7686
+f1_macro_test=0.7683
+f1_weighted_test=0.7682
+roc_auc_test=0.8274
+precision_antag=0.7492
+recall_antag=0.8062
+f1_antag=0.7767
+precision_syn=0.7910
+recall_syn=0.7310
+f1_syn=0.7599
+
+=== Overfitting check (CC-only, outer fold 5 ) ===
+Train AUC: 0.977 | Test AUC: 0.827
+Train Acc: 0.902 | Test Acc: 0.769
+Train F1w: 0.902 | Test F1w: 0.768
+
+Saved per-fold confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1_fold5.png
+Saved best params (incl. per-fold) to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/best_params_cv1.json
+Saved averaged feature importances to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1.csv
+Saved aggregated test predictions to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/test_predictions_cv1.csv
+Saved aggregated train predictions to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/train_predictions_cv1.csv
+Saved per-fold metrics to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/metrics_per_fold_cv1.csv
+
+========================================================================
+=== Summary over 5 outer folds (CV1, CC-only) ===
+roc_auc_test_mean=0.8220  roc_auc_test_std=0.0089
+accuracy_test_mean=0.7457  accuracy_test_std=0.0164
+f1_weighted_test_mean=0.7459  f1_weighted_test_std=0.0161
+f1_macro_test_mean=0.7451  f1_macro_test_std=0.0167
+========================================================================
+Per-class metrics over outer folds:
+ANTAGONISM: precision_mean=0.7428 (±0.0357), recall_mean=0.7546 (±0.0281), f1_mean=0.7480 (±0.0240)
+SYNERGY   : precision_mean=0.7481 (±0.0346), recall_mean=0.7376 (±0.0164), f1_mean=0.7422 (±0.0162)
+========================================================================
+Saved aggregated test metrics to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/metrics_test_cv1.csv
+Saved aggregated train metrics to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/metrics_train_cv1.csv
+
+Saved aggregated confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1.png
+
+=== EXP06d DONE ===
+

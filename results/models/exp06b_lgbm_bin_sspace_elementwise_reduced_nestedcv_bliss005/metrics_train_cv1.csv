@@ -1,0 +1,2 @@
+scheme,accuracy_train,f1_macro_train,f1_weighted_train,roc_auc_train,n_train
+CV1,0.9073294018534119,0.907300387354742,0.9073114404970926,0.9804482914036078,2374

@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+"""
+# **Experiment: exp01_lgbm_bin_baseline_nosspace_concat_simplecv**
+
+# - task: binary classification
+# - feature_design: concatenation
+# - use_sspace: false
+# - nested_cv: false
+# - notes: basic concatenation test with LightGBM
+
+**Data integrity note:**  
+All preprocessing (NA handling, dtype enforcement, column validation, etc.)
+was completed in the preprocessing scripts.  
+This notebook assumes clean, validated input data.
+"""
+
+import os
+import sys
+import pandas as pd
+import numpy as np
+from collections import Counter
+from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
+import lightgbm as lgb
+
+# ---- make pipeline importable ----
+sys.path.append(os.path.expanduser("/home/hannie/cc_ml/pipeline"))
+
+from feature_mapper.feature_mapper import FeatureMapper
+from shared_utils.data_io import features_and_target, basic_split
+from shared_utils.metrics import classification_metrics, overfitting_report
+
+
+def main():
+
+    print("\n=== EXP01 ===\n")
+
+    # ==========================
+    # load data 
+    # ==========================
+    cc_path = "/home/hannie/cc_ml/pipeline/preprocessing/data_to_use/features_25_levels_into_1.csv"
+    combos_path = "/home/hannie/cc_ml/pipeline/preprocessing/data_to_use/combinations_combined.csv"
+
+    cc_df = pd.read_csv(cc_path).copy()
+    combinations_df = pd.read_csv(combos_path).copy()
+
+    print(f"Loaded cc_df: {cc_df.shape}")
+    print(f"Loaded combos: {combinations_df.shape}")
+
+    # ==========================
+    # feature mapping 
+    # ==========================
+    mapper = FeatureMapper()
+    df = mapper.concatenation(combinations_df, cc_df)
+
+    print("Feature frame:", df.shape)
+    print(df.head())
+
+    # ==========================
+    # encoding 
+    # ==========================
+    X, y_encoded, class_names = features_and_target(
+        df,
+        task='bin_clas',
+        strain_as_feature=False,
+        top_n_strains=None
+    )
+
+    X_train, X_test, y_train, y_test = basic_split(
+        X, y_encoded, stratify=True
+    ) 
+
+    # pos = Counter(y_train)[1]
+    # neg = Counter(y_train)[0]
+
+    print("Class names:", class_names)
+    # print(f"Train positives={pos}, negatives={neg}")
+
+    """
+    **Class encoding note:**  
+    The `LabelEncoder` assigns labels alphabetically:
+    - `antagonism → 0`  
+    - `synergy → 1`   
+    Therefore, **`synergy` is the positive class (label 1)** used in ROC-AUC and F1-score metrics.
+    """
+
+    # ==========================    
+    # base model 
+    # ==========================
+    base_clf = lgb.LGBMClassifier(
+        objective='binary',
+        metric='binary_logloss',
+        n_jobs=-1,
+        random_state=42
+    )
+
+    # ==========================
+    # Hyperparam search
+    # ==========================
+    param_dist = {
+        'learning_rate': [0.02, 0.05],
+        'n_estimators': [300, 600],
+        'max_depth': [6, 8, 10],
+        'num_leaves': [15, 31, 63],
+        'min_child_samples': [20, 40, 80],
+        'min_child_weight': [1e-2, 1e-1],
+        'min_split_gain': [0.0, 0.1, 0.5],
+        'feature_fraction': [0.6, 0.8],
+        'subsample': [0.6, 0.8],
+        'subsample_freq': [1],
+        'lambda_l1': [0.0, 0.1, 1.0, 5.0],
+        'lambda_l2': [0.0, 0.1, 1.0, 5.0],
+        'max_bin': [63, 127, 255],
+    }
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+    search = RandomizedSearchCV(
+        estimator=base_clf,
+        param_distributions=param_dist,
+        n_iter=30,
+        cv=cv,
+        scoring='f1',
+        verbose=1,
+        n_jobs=-1,
+        random_state=42
+    )
+
+    print("\n--- Running RandomizedSearchCV ---\n")
+    search.fit(X_train, y_train)
+
+    best_model = search.best_estimator_
+    print("\nBest params:", search.best_params_)
+
+    # ==========================
+    # evaluate 
+    # ==========================
+    y_pred = best_model.predict(X_test)
+    y_score = best_model.predict_proba(X_test)[:, 1]
+
+    print("\n--- Classification Metrics ---")
+    classification_metrics(y_test, y_pred, y_score, class_names)
+
+    print("\n--- Overfitting Report ---")
+    overfitting_report(
+        best_model,
+        X_train, y_train,
+        X_test, y_test,
+        task='classification',
+        average='macro'
+    )
+
+    print("\n=== EXP01 DONE ===\n")
+
+
+if __name__ == "__main__":
+    main()

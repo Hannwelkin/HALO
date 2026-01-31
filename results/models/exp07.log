@@ -1,0 +1,73 @@
+
+=== EXP07: MULTI-CLASS + reduced elementwise features ===
+Using reduced CSV: /home/hannie/cc_ml/models/results/exp05_lgbm_bin_sspace_elementwise_featselect/elementwise_features_filtered_cv1_full.csv
+SCHEME: CV1
+Output: /home/hannie/cc_ml/models/results/exp07_lgbm_multi_sspace_elementwise_reduced_nestedcv
+
+Loaded df: (3160, 1658)
+Interaction Type
+antagonism    1227
+synergy       1222
+neutral        711
+Name: count, dtype: int64
+
+After filtering 3 classes: (3160, 1658)
+
+Reduced feature columns: 1648
+Classes: ['antagonism', 'neutral', 'synergy']
+Total samples: 3160
+========================================================================
+CV1 split by Drug Pair
+Train: 2535 Test: 625
+========================================================================
+
+--- Inner CV hyperparameter search ---
+Best inner-CV ACC: 0.503
+Best params: {'boosting_type': np.str_('dart'), 'learning_rate': 0.05, 'max_depth': 3, 'num_leaves': 15, 'min_data_in_leaf': 200, 'feature_fraction': 0.3, 'bagging_fraction': 0.8, 'bagging_freq': 1, 'lambda_l2': 26.406272423042086, 'lambda_l1': 0.1, 'max_bin': 63, 'min_gain_to_split': 0.05}
+
+=== Held-out Test Metrics ===
+Macro ROC-AUC: 0.728
+Acc          : 0.563
+F1 (weighted): 0.538
+F1 (macro)   : 0.491
+
+Confusion matrix:
+ [[173  19  52]
+ [ 76  21  44]
+ [ 53  29 158]]
+
+Classification Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.57      0.71      0.63       244
+     neutral       0.30      0.15      0.20       141
+     synergy       0.62      0.66      0.64       240
+
+    accuracy                           0.56       625
+   macro avg       0.50      0.51      0.49       625
+weighted avg       0.53      0.56      0.54       625
+
+
+--- Metrics for Log ---
+accuracy_test=0.5632
+f1_macro_test=0.4911
+f1_weighted_test=0.5382
+roc_auc_test=0.7276
+precision_antag=0.5728
+recall_antag=0.7090
+f1_antag=0.6337
+precision_neutral=0.3043
+recall_neutral=0.1489
+f1_neutral=0.2000
+precision_syn=0.6220
+recall_syn=0.6583
+f1_syn=0.6397
+
+=== Overfitting check ===
+Train AUC: 0.928 | Test AUC: 0.728
+Train Acc: 0.758 | Test Acc: 0.563
+Train F1 macro: 0.701 | Test F1 macro: 0.491
+
+Saved confusion matrix: /home/hannie/cc_ml/models/results/exp07_lgbm_multi_sspace_elementwise_reduced_nestedcv/confusion_matrix_cv1.png
+
+=== EXP07 DONE ===

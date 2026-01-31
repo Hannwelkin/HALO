@@ -1,0 +1,80 @@
+
+=== EXP06b: LGBM bin + reduced elementwise from exp05b (CV2, bliss=±0.05) + nested CV ===
+
+Using scheme: CV1
+Input  file: /home/hannie/cc_ml/models/results/exp05b_lgbm_bin_sspace_elementwise_featselect_bliss005/elementwise_features_filtered_cv1.csv
+Output dir : /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005
+Loaded reduced df shape: (2976, 1651)
+Interaction Type
+antagonism    1498
+synergy       1478
+Name: count, dtype: int64
+
+After filtering to synergy/antagonism: (2976, 1651)
+Interaction Type
+antagonism    1498
+synergy       1478
+Name: count, dtype: int64
+
+Total samples: 2976
+Reduced feature columns: 1641
+========================================================================
+CV1: Drug Pair grouping:
+Train size: 2374
+Train size fraction: 80.0
+Test size: 602
+Test size fraction: 20.0
+Test + Train set: 2976
+------------------------------------------------------------------------
+
+--- Nested CV: inner search over 32 configs ---
+Best inner-CV ACC: 0.726 
+Best params: {'boosting_type': 'gbdt', 'learning_rate': 0.03, 'max_depth': 3, 'num_leaves': 15, 'min_data_in_leaf': 200, 'feature_fraction': 0.5, 'bagging_fraction': 0.7, 'bagging_freq': 1, 'lambda_l2': 38.47953834780356, 'lambda_l1': 0.0, 'max_bin': 63, 'min_gain_to_split': 0.1}
+Saved best params to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/best_params_cv1.json
+Saved feature importances to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/feature_importances_cv1.csv
+
+=== Held-out Test ===
+ROC AUC : 0.763
+Acc     : 0.723
+F1 (w)  : 0.722
+
+Confusion matrix:
+ [[230  73]
+ [ 94 205]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.71      0.76      0.73       303
+     synergy       0.74      0.69      0.71       299
+
+    accuracy                           0.72       602
+   macro avg       0.72      0.72      0.72       602
+weighted avg       0.72      0.72      0.72       602
+
+
+--- Metrics for Log ---
+accuracy_test=0.7226
+f1_macro_test=0.7221
+f1_weighted_test=0.7222
+roc_auc_test=0.7632
+precision_antag=0.7099
+recall_antag=0.7591
+f1_antag=0.7337
+precision_syn=0.7374
+recall_syn=0.6856
+f1_syn=0.7106
+Saved test predictions to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/test_predictions_cv1.csv
+Saved test metrics to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/metrics_test_cv1.csv
+
+=== Overfitting check ===
+Train AUC: 0.98 | Test AUC: 0.763
+Train Acc: 0.907 | Test Acc: 0.723
+Train F1w: 0.907 | Test F1w: 0.722
+Saved train predictions to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/train_predictions_cv1.csv
+Saved train metrics to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/metrics_train_cv1.csv
+
+Saved confusion matrix plot to: /home/hannie/cc_ml/models/results/exp06b_lgbm_bin_sspace_elementwise_reduced_nestedcv_bliss005/confusion_matrix_cv1.png
+
+=== EXP06b DONE ===
+

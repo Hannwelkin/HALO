@@ -1,0 +1,81 @@
+
+=== EXP04: LGBM bin + S-space + compact similarity + nested CV ===
+
+Using scheme: CV1
+Output dir: /home/hannie/cc_ml/models/results/exp04_lgbm_bin_sspace_compact_nestedcv
+cc_df: (261, 3202)
+ss_df: (103, 129)
+combinations_df: (3160, 10)
+Full df shape (before filtering): (3160, 62)
+Interaction Type
+antagonism    1227
+synergy       1222
+neutral        711
+Name: count, dtype: int64
+       Drug A          Drug B  ... euc_block_24 euc_block_25
+0  spiramycin  clarithromycin  ...    -0.172373     0.587883
+1  spiramycin  clarithromycin  ...    -0.172373     0.587883
+2  spiramycin         chir-90  ...    -0.304607     0.625894
+3  spiramycin         chir-90  ...    -0.304607     0.625894
+4  spiramycin         chir-90  ...    -0.304607     0.625894
+
+[5 rows x 62 columns]
+After filtering to synergy/antagonism: (2449, 62)
+Interaction Type
+antagonism    1227
+synergy       1222
+Name: count, dtype: int64
+========================================================================
+CV1: Drug Pair grouping:
+Train size: 1943
+Train size fraction: 79.0
+Test size: 506
+Test size fraction: 21.0
+Test + Train set: 2449
+------------------------------------------------------------------------
+
+--- Nested CV: inner search over 32 configs ---
+Best inner-CV ACC: 0.561 
+Best params: {'boosting_type': np.str_('gbdt'), 'learning_rate': 0.03, 'max_depth': 3, 'num_leaves': 15, 'min_data_in_leaf': 200, 'feature_fraction': 0.3, 'bagging_fraction': 0.6, 'bagging_freq': 1, 'lambda_l2': 19.28841245659678, 'lambda_l1': 0.1, 'max_bin': 63, 'min_gain_to_split': 0.2}
+
+=== Held-out Test ===
+ROC AUC : 0.647
+Acc     : 0.621
+F1 (w)  : 0.621
+
+Confusion matrix:
+ [[154  89]
+ [103 160]]
+
+Report:
+               precision    recall  f1-score   support
+
+  antagonism       0.60      0.63      0.62       243
+     synergy       0.64      0.61      0.62       263
+
+    accuracy                           0.62       506
+   macro avg       0.62      0.62      0.62       506
+weighted avg       0.62      0.62      0.62       506
+
+
+--- Metrics for Log ---
+accuracy_test=0.6206
+f1_macro_test=0.6205
+f1_weighted_test=0.6207
+roc_auc_test=0.6472
+precision_antag=0.5992
+recall_antag=0.6337
+f1_antag=0.6160
+precision_syn=0.6426
+recall_syn=0.6084
+f1_syn=0.6250
+
+=== Overfitting check ===
+Train AUC: 0.96 | Test AUC: 0.647
+Train Acc: 0.89 | Test Acc: 0.621
+Train F1w: 0.89 | Test F1w: 0.621
+
+Saved confusion matrix plot to: /home/hannie/cc_ml/models/results/exp04_lgbm_bin_sspace_compact_nestedcv/confusion_matrix_cv1.png
+
+=== EXP04 DONE ===
+

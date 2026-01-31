@@ -1,0 +1,359 @@
+
+=== EXP10: DNN + reduced elementwise + nested CV (CV1) ===
+
+Using device: cpu
+Loaded df: (2976, 1651)
+Interaction Type
+antagonism    1498
+synergy       1478
+Name: count, dtype: int64
+
+After filtering (binary): (2976, 1651)
+Interaction Type
+antagonism    1498
+synergy       1478
+Name: count, dtype: int64
+Classes: ['antagonism', 'synergy']
+Total samples: 2976
+Num features: 1641
+
+CV1 outer split (by Drug Pair)
+Train: 2374 Test: 602
+
+--- Nested CV: inner hyperparameter search ---
+
+Config: {'hidden': (512, 256, 128), 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0001}
+  Fold 1...
+    epoch 001 | train=0.5985 | val=1.0432
+    epoch 002 | train=0.3927 | val=0.5519
+    epoch 003 | train=0.3020 | val=1.0462
+    epoch 004 | train=0.2761 | val=3.4023
+    epoch 005 | train=0.2467 | val=0.5288
+    epoch 006 | train=0.2354 | val=0.9886
+    epoch 007 | train=0.2197 | val=0.5148
+    epoch 008 | train=0.2097 | val=0.5776
+    epoch 009 | train=0.2004 | val=0.7335
+    epoch 010 | train=0.1974 | val=0.6104
+    epoch 011 | train=0.1933 | val=1.0351
+    epoch 012 | train=0.1898 | val=0.6145
+    epoch 013 | train=0.1945 | val=0.5879
+    epoch 014 | train=0.1873 | val=0.9452
+    epoch 015 | train=0.1873 | val=0.7532
+    epoch 016 | train=0.1790 | val=0.8007
+    epoch 017 | train=0.1787 | val=0.5931
+    early stopping
+    Fold AUC=0.819, Acc=0.747
+  Fold 2...
+    epoch 001 | train=0.6057 | val=0.6991
+    epoch 002 | train=0.3664 | val=0.5879
+    epoch 003 | train=0.3184 | val=0.9084
+    epoch 004 | train=0.2875 | val=2.2965
+    epoch 005 | train=0.2613 | val=1.1885
+    epoch 006 | train=0.3070 | val=0.5123
+    epoch 007 | train=0.2468 | val=1.6438
+    epoch 008 | train=0.2223 | val=0.5760
+    epoch 009 | train=0.2106 | val=0.5614
+    epoch 010 | train=0.2169 | val=0.7611
+    epoch 011 | train=0.2059 | val=0.8029
+    epoch 012 | train=0.2028 | val=1.0123
+    epoch 013 | train=0.2312 | val=2.3266
+    epoch 014 | train=0.2095 | val=0.8320
+    epoch 015 | train=0.2002 | val=0.7668
+    epoch 016 | train=0.1892 | val=0.7342
+    early stopping
+    Fold AUC=0.811, Acc=0.702
+  Fold 3...
+    epoch 001 | train=0.5882 | val=1.2792
+    epoch 002 | train=0.3709 | val=0.6796
+    epoch 003 | train=0.2979 | val=0.6396
+    epoch 004 | train=0.2800 | val=2.7308
+    epoch 005 | train=0.2557 | val=1.4661
+    epoch 006 | train=0.2457 | val=0.8846
+    epoch 007 | train=0.2286 | val=0.5378
+    epoch 008 | train=0.2160 | val=0.5497
+    epoch 009 | train=0.2107 | val=0.6553
+    epoch 010 | train=0.2051 | val=0.5733
+    epoch 011 | train=0.1953 | val=0.5962
+    epoch 012 | train=0.1939 | val=0.8379
+    epoch 013 | train=0.1922 | val=0.7040
+    epoch 014 | train=0.1800 | val=1.7106
+    epoch 015 | train=0.1821 | val=0.9838
+    epoch 016 | train=0.1836 | val=0.8151
+    epoch 017 | train=0.1902 | val=0.9044
+    early stopping
+    Fold AUC=0.796, Acc=0.666
+  --> Mean inner AUC=0.808, Acc=0.705
+
+Config: {'hidden': (256, 128), 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0003}
+  Fold 1...
+    epoch 001 | train=0.5850 | val=0.9336
+    epoch 002 | train=0.3715 | val=0.6490
+    epoch 003 | train=0.3009 | val=0.5135
+    epoch 004 | train=0.2665 | val=0.8821
+    epoch 005 | train=0.2536 | val=1.8725
+    epoch 006 | train=0.2407 | val=0.5297
+    epoch 007 | train=0.2365 | val=0.5039
+    epoch 008 | train=0.2281 | val=0.7689
+    epoch 009 | train=0.2190 | val=1.0740
+    epoch 010 | train=0.2231 | val=0.7433
+    epoch 011 | train=0.2130 | val=0.6863
+    epoch 012 | train=0.2042 | val=0.7043
+    epoch 013 | train=0.2031 | val=1.8957
+    epoch 014 | train=0.1941 | val=0.6663
+    epoch 015 | train=0.1880 | val=0.7627
+    epoch 016 | train=0.1932 | val=0.8122
+    epoch 017 | train=0.1953 | val=0.7632
+    early stopping
+    Fold AUC=0.813, Acc=0.693
+  Fold 2...
+    epoch 001 | train=0.5757 | val=0.8944
+    epoch 002 | train=0.3413 | val=0.5962
+    epoch 003 | train=0.3032 | val=1.5603
+    epoch 004 | train=0.2674 | val=1.5829
+    epoch 005 | train=0.2508 | val=1.0682
+    epoch 006 | train=0.2466 | val=1.0612
+    epoch 007 | train=0.2417 | val=1.3063
+    epoch 008 | train=0.2329 | val=0.9514
+    epoch 009 | train=0.2479 | val=1.1478
+    epoch 010 | train=0.2250 | val=0.6023
+    epoch 011 | train=0.2294 | val=0.9520
+    epoch 012 | train=0.2194 | val=0.5749
+    epoch 013 | train=0.2270 | val=0.7742
+    epoch 014 | train=0.2186 | val=0.8973
+    epoch 015 | train=0.2173 | val=0.6627
+    epoch 016 | train=0.2056 | val=0.6885
+    epoch 017 | train=0.1998 | val=0.5424
+    epoch 018 | train=0.2493 | val=0.7467
+    epoch 019 | train=0.2127 | val=2.2725
+    epoch 020 | train=0.2170 | val=0.5356
+    epoch 021 | train=0.2036 | val=0.6646
+    epoch 022 | train=0.1956 | val=0.8373
+    epoch 023 | train=0.1827 | val=0.6963
+    epoch 024 | train=0.1990 | val=0.5773
+    epoch 025 | train=0.1882 | val=0.5909
+    epoch 026 | train=0.2414 | val=1.5392
+    epoch 027 | train=0.2691 | val=0.6928
+    epoch 028 | train=0.2067 | val=0.6344
+    epoch 029 | train=0.2161 | val=0.9545
+    epoch 030 | train=0.2385 | val=1.1093
+    early stopping
+    Fold AUC=0.806, Acc=0.614
+  Fold 3...
+    epoch 001 | train=0.5717 | val=0.8704
+    epoch 002 | train=0.3684 | val=0.9168
+    epoch 003 | train=0.3060 | val=1.1525
+    epoch 004 | train=0.2820 | val=0.4688
+    epoch 005 | train=0.2513 | val=0.5289
+    epoch 006 | train=0.2537 | val=1.0591
+    epoch 007 | train=0.2445 | val=0.5293
+    epoch 008 | train=0.2278 | val=0.4978
+    epoch 009 | train=0.2319 | val=0.6580
+    epoch 010 | train=0.2150 | val=0.5381
+    epoch 011 | train=0.2114 | val=0.8651
+    epoch 012 | train=0.2042 | val=0.5050
+    epoch 013 | train=0.2048 | val=1.1246
+    epoch 014 | train=0.1983 | val=0.5922
+    early stopping
+    Fold AUC=0.832, Acc=0.746
+  --> Mean inner AUC=0.817, Acc=0.684
+
+Config: {'hidden': (512, 256), 'dropout': 0.4, 'lr': 0.0007, 'weight_decay': 0.0001}
+  Fold 1...
+    epoch 001 | train=0.5659 | val=0.9176
+    epoch 002 | train=0.3708 | val=0.6041
+    epoch 003 | train=0.2950 | val=0.4908
+    epoch 004 | train=0.2820 | val=0.6377
+    epoch 005 | train=0.2632 | val=0.5172
+    epoch 006 | train=0.2484 | val=0.5112
+    epoch 007 | train=0.2414 | val=0.8516
+    epoch 008 | train=0.2330 | val=0.5829
+    epoch 009 | train=0.2398 | val=0.7387
+    epoch 010 | train=0.2180 | val=0.5270
+    epoch 011 | train=0.2191 | val=0.8114
+    epoch 012 | train=0.2181 | val=0.6521
+    epoch 013 | train=0.2071 | val=1.4452
+    early stopping
+    Fold AUC=0.842, Acc=0.565
+  Fold 2...
+    epoch 001 | train=0.5769 | val=1.0549
+    epoch 002 | train=0.3601 | val=1.2485
+    epoch 003 | train=0.3155 | val=0.5673
+    epoch 004 | train=0.2971 | val=0.9498
+    epoch 005 | train=0.2745 | val=0.5760
+    epoch 006 | train=0.2424 | val=1.5560
+    epoch 007 | train=0.2380 | val=1.2102
+    epoch 008 | train=0.2482 | val=0.5872
+    epoch 009 | train=0.2490 | val=1.0373
+    epoch 010 | train=0.2716 | val=0.5735
+    epoch 011 | train=0.2386 | val=0.5987
+    epoch 012 | train=0.2239 | val=1.3030
+    epoch 013 | train=0.2179 | val=0.9897
+    early stopping
+    Fold AUC=0.828, Acc=0.616
+  Fold 3...
+    epoch 001 | train=0.5874 | val=0.9520
+    epoch 002 | train=0.3623 | val=0.5200
+    epoch 003 | train=0.2975 | val=0.6186
+    epoch 004 | train=0.2807 | val=0.7843
+    epoch 005 | train=0.2726 | val=1.1901
+    epoch 006 | train=0.2489 | val=0.4717
+    epoch 007 | train=0.2460 | val=0.5775
+    epoch 008 | train=0.2474 | val=0.7778
+    epoch 009 | train=0.2457 | val=0.4867
+    epoch 010 | train=0.2290 | val=0.8224
+    epoch 011 | train=0.2287 | val=0.4935
+    epoch 012 | train=0.2216 | val=0.4893
+    epoch 013 | train=0.2145 | val=0.6345
+    epoch 014 | train=0.2024 | val=0.4837
+    epoch 015 | train=0.2014 | val=0.5416
+    epoch 016 | train=0.1908 | val=0.4783
+    early stopping
+    Fold AUC=0.857, Acc=0.772
+  --> Mean inner AUC=0.842, Acc=0.651
+
+Config: {'hidden': (256, 256, 128), 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0001}
+  Fold 1...
+    epoch 001 | train=0.6192 | val=0.8659
+    epoch 002 | train=0.4047 | val=0.6188
+    epoch 003 | train=0.3217 | val=0.9988
+    epoch 004 | train=0.2821 | val=1.0035
+    epoch 005 | train=0.2615 | val=1.4337
+    epoch 006 | train=0.2549 | val=0.5120
+    epoch 007 | train=0.2321 | val=1.1941
+    epoch 008 | train=0.2375 | val=0.7906
+    epoch 009 | train=0.2119 | val=0.6558
+    epoch 010 | train=0.2052 | val=0.7838
+    epoch 011 | train=0.1997 | val=0.9555
+    epoch 012 | train=0.2010 | val=0.5650
+    epoch 013 | train=0.1927 | val=0.8207
+    epoch 014 | train=0.1893 | val=0.5636
+    epoch 015 | train=0.1848 | val=0.9344
+    epoch 016 | train=0.1834 | val=1.0767
+    early stopping
+    Fold AUC=0.815, Acc=0.696
+  Fold 2...
+    epoch 001 | train=0.5991 | val=0.8242
+    epoch 002 | train=0.3839 | val=0.6052
+    epoch 003 | train=0.3046 | val=0.6492
+    epoch 004 | train=0.2814 | val=0.5876
+    epoch 005 | train=0.2553 | val=0.8908
+    epoch 006 | train=0.2547 | val=2.0586
+    epoch 007 | train=0.2285 | val=0.6482
+    epoch 008 | train=0.2294 | val=2.0448
+    epoch 009 | train=0.2324 | val=2.7525
+    epoch 010 | train=0.2666 | val=3.4398
+    epoch 011 | train=0.2944 | val=0.5817
+    epoch 012 | train=0.2526 | val=0.6081
+    epoch 013 | train=0.2267 | val=0.8303
+    epoch 014 | train=0.2137 | val=1.0504
+    epoch 015 | train=0.1910 | val=1.0849
+    epoch 016 | train=0.2049 | val=0.9197
+    epoch 017 | train=0.1880 | val=0.7392
+    epoch 018 | train=0.1884 | val=1.0115
+    epoch 019 | train=0.1865 | val=0.9709
+    epoch 020 | train=0.2108 | val=0.7886
+    epoch 021 | train=0.2364 | val=0.6780
+    early stopping
+    Fold AUC=0.792, Acc=0.715
+  Fold 3...
+    epoch 001 | train=0.5931 | val=0.7101
+    epoch 002 | train=0.3933 | val=0.5435
+    epoch 003 | train=0.3073 | val=0.6716
+    epoch 004 | train=0.3006 | val=0.4971
+    epoch 005 | train=0.2671 | val=0.5450
+    epoch 006 | train=0.2550 | val=0.5333
+    epoch 007 | train=0.2371 | val=2.6399
+    epoch 008 | train=0.2159 | val=0.6677
+    epoch 009 | train=0.2083 | val=0.5116
+    epoch 010 | train=0.2060 | val=0.5142
+    epoch 011 | train=0.1927 | val=1.0193
+    epoch 012 | train=0.1952 | val=0.8212
+    epoch 013 | train=0.1861 | val=0.7976
+    epoch 014 | train=0.1993 | val=0.6490
+    early stopping
+    Fold AUC=0.834, Acc=0.711
+  --> Mean inner AUC=0.814, Acc=0.708
+
+Best config from nested CV:
+Mean inner AUC: 0.842 Mean inner Acc: 0.651
+Config: {'hidden': (512, 256), 'dropout': 0.4, 'lr': 0.0007, 'weight_decay': 0.0001}
+
+--- Final training on outer-train with best config ---
+
+    epoch 001 | train=0.5597 | val=0.6140
+    epoch 002 | train=0.3453 | val=0.7351
+    epoch 003 | train=0.2801 | val=0.5155
+    epoch 004 | train=0.2525 | val=2.1179
+    epoch 005 | train=0.2524 | val=2.9096
+    epoch 006 | train=0.2383 | val=0.5463
+    epoch 007 | train=0.2265 | val=0.9760
+    epoch 008 | train=0.2085 | val=0.5612
+    epoch 009 | train=0.2046 | val=2.9412
+    epoch 010 | train=0.2024 | val=1.8694
+    epoch 011 | train=0.1937 | val=0.8422
+    epoch 012 | train=0.1849 | val=0.7951
+    epoch 013 | train=0.1850 | val=0.6559
+    epoch 014 | train=0.1773 | val=1.0510
+    epoch 015 | train=0.1816 | val=0.6153
+    epoch 016 | train=0.1738 | val=0.7703
+    epoch 017 | train=0.1751 | val=0.4983
+    epoch 018 | train=0.1697 | val=0.6125
+    epoch 019 | train=0.1661 | val=0.6503
+    epoch 020 | train=0.1631 | val=0.6883
+    epoch 021 | train=0.1681 | val=0.7225
+    epoch 022 | train=0.1692 | val=0.6480
+    epoch 023 | train=0.1608 | val=0.9806
+    epoch 024 | train=0.1589 | val=0.6602
+    epoch 025 | train=0.1611 | val=0.5978
+    epoch 026 | train=0.1553 | val=0.8971
+    epoch 027 | train=0.1594 | val=0.5051
+    epoch 028 | train=0.1495 | val=0.7180
+    epoch 029 | train=0.1539 | val=0.8939
+    epoch 030 | train=0.1510 | val=0.6044
+    epoch 031 | train=0.1515 | val=0.8566
+    epoch 032 | train=0.1521 | val=0.7625
+    early stopping
+
+=== Evaluation on outer held-out test (pair-disjoint) ===
+
+ROC AUC : 0.703
+Acc     : 0.626
+F1 (w)  : 0.615
+F1 (mac): 0.614
+
+Confusion matrix:
+ [[242  61]
+ [164 135]]
+
+Classification report:
+               precision    recall  f1-score   support
+
+  antagonism       0.60      0.80      0.68       303
+     synergy       0.69      0.45      0.55       299
+
+    accuracy                           0.63       602
+   macro avg       0.64      0.63      0.61       602
+weighted avg       0.64      0.63      0.61       602
+
+
+--- Metrics for Log ---
+accuracy_test=0.6262
+f1_macro_test=0.6141
+f1_weighted_test=0.6145
+roc_auc_test=0.7026
+precision_antag=0.5961
+recall_antag=0.7987
+f1_antag=0.6827
+precision_syn=0.6888
+recall_syn=0.4515
+f1_syn=0.5455
+
+=== Overfitting check ===
+
+Train AUC: 0.962 | Test AUC: 0.703
+Train Acc: 0.889 | Test Acc: 0.626
+Train F1w: 0.889 | Test F1w: 0.615
+Train F1m: 0.889 | Test F1m: 0.614
+
+=== EXP10b DONE ===
+
