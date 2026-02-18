@@ -1,4 +1,3 @@
-
 # OS junk
 *:Zone.Identifier
 .DS_Store
@@ -11,27 +10,37 @@
 # python
 __pycache__/
 *.pyc
-# generated results
-results/
-
-
-# ---- generated outputs / experiment artifacts ----
-results/
-**/results/
-*.csv
-*.tsv
-*.parquet
-*.feather
-*.pkl
-*.joblib
-*.pt
-*.pth
-*.ckpt
-*.h5
-*.npz
-*.npy
 
 # OS / misc
 .DS_Store
 __pycache__/
 *.pyc
+
+# LaTeX build artifacts
+figure_pipeline/table1_novel_pairs/*.aux
+figure_pipeline/table1_novel_pairs/*.log
+figure_pipeline/table1_novel_pairs/*.fls
+figure_pipeline/table1_novel_pairs/*.fdb_latexmk
+figure_pipeline/table1_novel_pairs/*.synctex.gz
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.fls
+paper/**/*.fdb_latexmk
+paper/**/*.synctex.gz
+paper/**/*.out
+paper/**/*.toc
+paper/**/*.lof
+paper/**/*.lot
+paper/**/*.blg
+paper/**/.history/
+
+
+# RESULTS (contains mostly large files)
+results/**
+
+
+# HALO package .egg-info
+*.egg-info/
+build/
+dist/
+
