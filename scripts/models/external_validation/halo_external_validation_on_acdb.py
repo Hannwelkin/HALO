@@ -38,7 +38,7 @@ ext_out.mkdir(parents=True, exist_ok=True)
 
 best_params_path = exp06d_out / "best_params_cv1.json"
 
-external_base_path = INTERIM / "source_c_acdb" / "acdb_cleaned_all.csv"
+external_base_path = INTERIM / "source_c_acdb" / "acdb_cleaned_data_all.csv"
 
 # Internal raw inputs
 cc_path = CC_FEATURES / "cc_features_concat_25x128.csv"
@@ -131,10 +131,12 @@ drop_cols = [
     "Strain",
     "Specie",
     "Score",
+    "Bliss Score",
     "Method",
     "Interaction Type",
     "Drug Pair",
-    "PMID"
+    "PMID",
+    "Source"
 ]
 feat_cols = [c for c in df.columns if c not in drop_cols]
 
@@ -413,6 +415,8 @@ before_n = len(ext_base)
 ext_base = ext_base[~ext_base["Drug Pair"].astype(str).isin(train_pairs)].copy()
 print(f"Dropped {before_n - len(ext_base)} / {before_n} ACDB rows overlapping training pairs.")
 
+print(ext_base.groupby("Method")["Interaction Type"].value_counts())
+
 ext_elem = fm.elementwise_similarity(ext_base, cc_df)
 
 print("Elementwise external matrix shape (before label filtering):", ext_elem.shape)
@@ -471,6 +475,56 @@ print(
     "\nReport:\n",
     classification_report(y_ext, y_pred_ext, target_names=le.classes_),
 )
+
+# ==========================
+# 7b) Per-method metrics (FICI vs Loewe) + combined
+# ==========================
+def compute_metrics(y_true, y_pred, y_prob):
+    cm = confusion_matrix(y_true, y_pred, labels=[ant_code, synergy_code])
+    tn, fp, fn, tp = cm.ravel()
+    y_true_bin = (y_true == synergy_code).astype(int)
+    try:
+        auc = roc_auc_score(y_true_bin, y_prob)
+    except ValueError:
+        auc = float("nan")  # only one class present
+    return dict(
+        n=len(y_true),
+        accuracy=accuracy_score(y_true, y_pred),
+        f1=f1_score(y_true, y_pred, zero_division=0),
+        f1_macro=f1_score(y_true, y_pred, average="macro", zero_division=0),
+        roc_auc=auc,
+        tn=int(tn), fp=int(fp), fn=int(fn), tp=int(tp),
+    )
+
+per_method_rows = []
+
+for method_name, sub in ext_elem.groupby("Method"):
+    y_true_sub = sub["y_true_int"].to_numpy()
+    y_pred_sub = sub["y_pred_int"].to_numpy()
+    p_sub = sub["p_synergy"].to_numpy()
+
+    row = dict(method=method_name)
+    row.update(compute_metrics(y_true_sub, y_pred_sub, p_sub))
+    per_method_rows.append(row)
+
+    print(f"\n=== External evaluation (ACDB — {method_name}) ===")
+    print(f"n = {row['n']}")
+    print(f"Accuracy: {row['accuracy']:.3f}")
+    print(f"F1      : {row['f1']:.3f}")
+    print(f"ROC AUC : {row['roc_auc']}")
+    print("Confusion matrix [[TN, FP], [FN, TP]]:")
+    print([[row['tn'], row['fp']], [row['fn'], row['tp']]])
+
+# Combined row, reusing your existing pooled numbers
+combined_row = dict(method="combined")
+combined_row.update(compute_metrics(y_ext, y_pred_ext, p_synergy_ext))
+per_method_rows.append(combined_row)
+
+metrics_by_method_df = pd.DataFrame(per_method_rows)
+metrics_by_method_path = ext_out / "external_metrics_by_method_acdb.csv"
+metrics_by_method_df.to_csv(metrics_by_method_path, index=False)
+print("\nSaved per-method + combined metrics to:", metrics_by_method_path)
+print(metrics_by_method_df)
 
 # ==========================
 # 8) Save everything needed for plotting
