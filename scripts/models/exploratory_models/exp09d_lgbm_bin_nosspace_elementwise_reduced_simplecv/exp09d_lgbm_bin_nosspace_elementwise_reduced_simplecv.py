@@ -28,9 +28,15 @@ from sklearn.model_selection import (
     train_test_split,
     RandomizedSearchCV,
 )
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    roc_auc_score,
+)
+
 from sklearn.preprocessing import LabelEncoder
 
-from halo.paths import CC_FEATURES, PROCESSED
+from halo.paths import CC_FEATURES, PROCESSED, MODEL_RESULTS
 from halo.mappers.feature_mapper import FeatureMapper
 from halo.shared_utils.data_io import classify_interaction
 from halo.shared_utils.metrics import classification_metrics, overfitting_report
@@ -110,6 +116,9 @@ def main():
     # ==========================
     # 1) Load raw inputs and build elementwise feature table
     # ==========================
+    out_dir = MODEL_RESULTS / "exp09d_lgbm_bin_nosspace_elementwise_reduced_simplecv"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
     cc_path = CC_FEATURES / "cc_features_concat_25x128.csv"
     combos_path = PROCESSED / "halo_training_dataset.csv"
 
@@ -237,6 +246,27 @@ def main():
         y_score=y_score,
         class_names=le.classes_,
     )
+
+    synergy_idx = list(le.classes_).index("synergy")
+    y_prob_synergy = y_score[:, synergy_idx]
+
+    predictions_df = pd.DataFrame({
+        "y_true": (y_test == le.transform(["synergy"])[0]).astype(int),
+        "y_pred": y_pred,
+        "y_prob": y_prob_synergy,
+    })
+    predictions_df.to_csv(out_dir / "test_predictions.csv", index=False)
+    print("Saved test predictions to:", out_dir / "test_predictions.csv")
+
+    metrics_df = pd.DataFrame([{
+        "accuracy_test": accuracy_score(y_test, y_pred),
+        "f1_macro_test": f1_score(y_test, y_pred, average="macro"),
+        "f1_weighted_test": f1_score(y_test, y_pred, average="weighted"),
+        "roc_auc_test": roc_auc_score(predictions_df["y_true"], y_prob_synergy),
+    }])
+    metrics_df.to_csv(out_dir / "metrics_test.csv", index=False)
+    print("Saved test metrics to:", out_dir / "metrics_test.csv")
+
 
     # ==========================
     # 8) Overfitting report
