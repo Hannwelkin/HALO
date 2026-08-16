@@ -247,6 +247,7 @@ def main():
     # 5) Containers for results
     # ==========================
     fold_results = []
+    fold_predictions = []
     cm_total = None
 
     selected_counts = []
@@ -460,6 +461,7 @@ def main():
 
         fold_results.append(
             dict(
+                fold=fold_idx,
                 roc_auc=roc_auc_test,
                 accuracy=accuracy_test,
                 f1_weighted=f1_weighted_test,
@@ -471,6 +473,14 @@ def main():
                 recall_syn=recall_syn,
                 f1_syn=f1_syn,
             )
+        )
+
+        fold_predictions.append(
+            pd.DataFrame({
+                "fold": fold_idx,
+                "y_true": y_te_bin,
+                "y_prob": p_te
+            })
         )
 
         print(f"Finished outer fold {fold_idx}")
@@ -497,6 +507,17 @@ def main():
         summary_df = pd.DataFrame(summary_rows)
         summary_path = out_dir / f"cv_metrics_summary_{SCHEME.lower()}.csv"
         summary_df.to_csv(summary_path, index=False)
+
+        fold_results_df = pd.DataFrame(fold_results)
+        fold_results_path = out_dir / f"metrics_per_fold_{SCHEME.lower()}.csv"
+        fold_results_df.to_csv(fold_results_path, index=False)
+        print("Saved per-fold metrics to:", fold_results_path)
+
+        predictions_df = pd.concat(fold_predictions, ignore_index=True)
+        predictions_path = out_dir / f"test_predictions_{SCHEME.lower()}.csv"
+        predictions_df.to_csv(predictions_path, index=False)
+        print("Saved test predictions to:", predictions_path)
+
         print("\nSaved CV metrics summary to:", summary_path)
         print("=" * 72)
 
