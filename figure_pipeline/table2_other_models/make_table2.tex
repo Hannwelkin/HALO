@@ -1,0 +1,86 @@
+% !TeX program = xelatex
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{capt-of}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{array}
+\usepackage{pdflscape}
+
+% ---------------- Calibri (requires XeLaTeX) ----------------
+\usepackage{fontspec}
+\setmainfont[
+      Path = ../fonts/,
+      AutoFakeBold = 2.0,
+      BoldFont = {calibrib.ttf}
+    ]{Calibri.ttf}
+
+\captionsetup[table]{labelformat=empty, skip=6pt}
+
+\begin{document}
+
+\begin{landscape}
+    \centering
+
+    \begin{minipage}{0.98\linewidth}
+        \centering
+        \scriptsize
+        \setlength{\tabcolsep}{4pt}
+        \renewcommand{\arraystretch}{1.3}
+
+        \captionof{table}{\textbf{Table 2.} Comparison of HALO with prior antibacterial-specific synergy prediction frameworks}
+
+        \begin{tabular}{@{}
+            >{\raggedright\arraybackslash}p{0.075\linewidth}
+            >{\raggedright\arraybackslash}p{0.155\linewidth}
+            >{\raggedright\arraybackslash}p{0.125\linewidth}
+            >{\raggedright\arraybackslash}p{0.11\linewidth}
+            >{\raggedright\arraybackslash}p{0.135\linewidth}
+            >{\raggedright\arraybackslash}p{0.115\linewidth}
+            >{\raggedright\arraybackslash}p{0.135\linewidth}
+            @{}}
+            \toprule
+            Method
+             & Model / architecture
+             & Feature type
+             & Output
+             & Dataset scale
+             & Evaluation scheme
+             & Reported metrics                                     \\
+            \midrule
+            INDIGO~[17]
+             & Random forest
+             & Chemogenomic fitness profiles
+             & Continuous Loewe $\alpha$
+             & 105--171 pairs, 15--19 cmpds, 1 strain
+             & Leave-drug-out / leave-pair-out
+             & $R = 0.52$ ($P = 10^{-6}$), 66-pair test             \\
+            CoSynE~[16]
+             & Multiple classifiers compared; best type unspecified
+             & Structural substructure profiles
+             & 3-class (syn/add/antag)
+             & 153 pairs, 18 cmpds, 1 strain
+             & K-fold / leave-drug-out / leave-pair-out
+             & AUROC 0.77, Acc 0.81 (leave-pair-out)                \\
+            Lv et al.~[18]
+             & Graph neural network (architecture unspecified)
+             & Molecular graph structure
+             & Binary
+             & 91 pairs, 14 cmpds, 1 strain
+             & Not confirmed
+             & Precision $\approx 0.875$, Acc $= 0.90$              \\
+            HALO
+             & LightGBM (gradient-boosted trees)
+             & Multi-level CC bioactivity embeddings
+             & Binary
+             & 2{,}449 interactions, 97 cmpds, 10 strains
+             & Nested pair-held-out CV
+             & ROC-AUC 0.78, Accuracy 0.70 (Sec. 2.2)               \\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+
+\end{landscape}
+
+\end{document}
