@@ -38,7 +38,7 @@ ext_out.mkdir(parents=True, exist_ok=True)
 
 best_params_path = exp06d_out / "best_params_cv1.json"
 
-external_base_path = INTERIM / "source_c_acdb" / "acdb_cleaned_data_all.csv"
+external_base_path = INTERIM / "source_c_acdb" / "acdb_cleaned_data_validation.csv"
 
 # Internal raw inputs
 cc_path = CC_FEATURES / "cc_features_concat_25x128.csv"
@@ -416,6 +416,8 @@ ext_base = ext_base[~ext_base["Drug Pair"].astype(str).isin(train_pairs)].copy()
 print(f"Dropped {before_n - len(ext_base)} / {before_n} ACDB rows overlapping training pairs.")
 
 print(ext_base.groupby("Method")["Interaction Type"].value_counts())
+unique_compounds = pd.unique(pd.concat([ext_base["Drug A Inchikey"], ext_base["Drug B Inchikey"]]))
+print(f"Number of unique antibacterials in acdb validation set: {len(unique_compounds)}")
 
 ext_elem = fm.elementwise_similarity(ext_base, cc_df)
 

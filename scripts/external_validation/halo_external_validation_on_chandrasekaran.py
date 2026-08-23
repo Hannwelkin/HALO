@@ -431,6 +431,8 @@ train_pairs = set(combos_df["Drug Pair"].astype(str))
 before_n = len(ext_base)
 ext_base = ext_base[~ext_base["Drug Pair"].astype(str).isin(train_pairs)].copy()
 print(f"Dropped {before_n - len(ext_base)} / {before_n} INDIGO rows overlapping training pairs.")
+unique_compounds = pd.unique(pd.concat([ext_base["Drug A Inchikey"], ext_base["Drug B Inchikey"]]))
+print(f"Number of unique antibacterials in Chandrasekaran validation set: {len(unique_compounds)}")
 
 ext_elem = fm.elementwise_similarity(ext_base, cc_df)
 
