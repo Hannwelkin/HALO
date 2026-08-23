@@ -422,7 +422,7 @@ if "Drug Pair" not in ext_base.columns:
         lambda x: "::".join(sorted([x["Drug A Inchikey"], x["Drug B Inchikey"]])),
         axis=1,
     )
-
+    
 ext_elem = fm.elementwise_similarity(ext_base, cc_df)
 
 print("Elementwise external matrix shape (before label filtering):", ext_elem.shape)
