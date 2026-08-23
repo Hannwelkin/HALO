@@ -24,7 +24,7 @@ from sklearn.metrics import (
     classification_report,
 )
 
-from halo.paths import INTERIM, PROCESSED, MODEL_RESULTS, CC_FEATURES
+from halo.paths import INTERIM, PROCESSED, RESULTS, MODEL_RESULTS, CC_FEATURES
 from halo.mappers.feature_mapper import FeatureMapper
 
 
@@ -33,7 +33,7 @@ corr_min = 0.01
 keep_top_frac = 0.30
 
 exp06d_out = MODEL_RESULTS / "exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv"
-ext_out = MODEL_RESULTS / "external_validation" / "external_validation_acdb"
+ext_out = RESULTS / "external_validation" / "external_validation_acdb"
 ext_out.mkdir(parents=True, exist_ok=True)
 
 best_params_path = exp06d_out / "best_params_cv1.json"

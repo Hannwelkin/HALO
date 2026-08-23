@@ -44,7 +44,7 @@ from sklearn.metrics import (
     classification_report,
 )
 
-from halo.paths import MODEL_RESULTS, INTERIM, CC_FEATURES, PROCESSED
+from halo.paths import MODEL_RESULTS, RESULTS, INTERIM, CC_FEATURES, PROCESSED
 from halo.mappers.feature_mapper import FeatureMapper
 from halo.shared_utils.data_io import classify_interaction
 
@@ -54,7 +54,7 @@ corr_min = 0.01
 keep_top_frac = 0.30
 
 exp06d_out = MODEL_RESULTS / "exp06d_lgbm_bin_nosspace_elementwise_reduced_nestedcv"
-ext_out = MODEL_RESULTS / "external_validation" / "external_validation_chandrasekaran"
+ext_out = RESULTS / "external_validation" / "external_validation_chandrasekaran"
 ext_out.mkdir(parents=True, exist_ok=True)
 
 best_params_path = exp06d_out / "best_params_cv1.json"
@@ -422,7 +422,16 @@ if "Drug Pair" not in ext_base.columns:
         lambda x: "::".join(sorted([x["Drug A Inchikey"], x["Drug B Inchikey"]])),
         axis=1,
     )
-    
+
+# overlap pairs exclusion
+print(repr(ext_base["Drug Pair"].iloc[0]))
+print(repr(combos_df["Drug Pair"].iloc[0]))
+
+train_pairs = set(combos_df["Drug Pair"].astype(str))
+before_n = len(ext_base)
+ext_base = ext_base[~ext_base["Drug Pair"].astype(str).isin(train_pairs)].copy()
+print(f"Dropped {before_n - len(ext_base)} / {before_n} INDIGO rows overlapping training pairs.")
+
 ext_elem = fm.elementwise_similarity(ext_base, cc_df)
 
 print("Elementwise external matrix shape (before label filtering):", ext_elem.shape)
