@@ -19,10 +19,10 @@ from matplotlib.colors import LinearSegmentedColormap
 from sklearn.metrics import roc_auc_score, average_precision_score
 
 
-from halo.paths import FIGURE_PIPELINE, MODEL_RESULTS
+from halo.paths import FIGURE_PIPELINE, RESULTS
 
-BASE_DIR = MODEL_RESULTS / "external_validation" / "external_validation_chandrasekaran"
-OUT_DIR = FIGURE_PIPELINE / "fig5_external_validation" / "fig5_panels"
+BASE_DIR = RESULTS / "external_validation" / "external_validation_chandrasekaran"
+OUT_DIR = FIGURE_PIPELINE / "fig5_external_validation_chandrasekaran" / "fig5_panels"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 roc_path = BASE_DIR / "external_roc_curve_chandrasekaran.csv"
