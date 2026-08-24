@@ -53,7 +53,6 @@ external_base_path = INTERIM / "source_c_acdb" / "acdb_cleaned_data_validation.c
 cc_path = CC_FEATURES / "cc_features_concat_25x128.csv"
 combos_path = PROCESSED / "halo_training_dataset.csv"
 
-t0 = _tic()
 def select_features_lgbm(
     X_train: pd.DataFrame,
     y_train: np.ndarray,
@@ -109,7 +108,6 @@ def select_features_lgbm(
     n_keep = max(1, int(len(feat_imp) * keep_top_frac))
     return feat_imp.index[:n_keep].tolist()
 
-_toc("feature_selecion_per_fold", t0)
 
 # ==========================
 # 1) Load internal training data and rebuild full CC-only features
@@ -227,6 +225,7 @@ for fold_idx, (tr_idx, te_idx) in enumerate(outer_splits, 1):
     df_tr = df.iloc[tr_idx].reset_index(drop=True)
     df_te = df.iloc[te_idx].reset_index(drop=True)
 
+    t0 = _tic()
     selected_outer = select_features_lgbm(
         X_train=X_tr,
         y_train=y_tr,
@@ -234,6 +233,7 @@ for fold_idx, (tr_idx, te_idx) in enumerate(outer_splits, 1):
         corr_min=corr_min,
         keep_top_frac=keep_top_frac,
     )
+    _toc("feature_selection_per_fold", t0)
 
     X_tr_sel = X_tr[selected_outer].copy()
     X_te_sel = X_te[selected_outer].copy()
