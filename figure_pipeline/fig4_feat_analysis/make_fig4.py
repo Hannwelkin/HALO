@@ -287,12 +287,10 @@ def plot_panel_A(ax, df_importance, meta, n_cc_dims, top_n=12):
 # ==========================
 # Panel B – grouped importance (sublevels + strain)
 # ==========================
-def plot_panel_B(ax, df_importance, meta, n_cc_dims):
+def plot_panel_B_pie(ax, df_importance, meta, n_cc_dims):
     """
-    Panel B:
-    CC domain contributions to normalized gain (HALO)
+    Panel B: CC domain contributions to normalized gain (HALO), shown as a pie chart.
     """
-
     df_imp = df_importance.copy()
     df_imp = df_imp[df_imp["feature"].str.startswith(("cos_elem_", "euc_elem_"))]
 
@@ -308,10 +306,8 @@ def plot_panel_B(ax, df_importance, meta, n_cc_dims):
             or row["cc_level"] == "Strain"
         ):
             return "Strain-space"
-
         if isinstance(row["cc_level_name"], str) and row["cc_level_name"]:
             return row["cc_level_name"]
-
         if row["space_name"] == "Chemical Checker":
             return "Chemical Checker"
         return "Unknown"
@@ -323,40 +319,34 @@ def plot_panel_B(ax, df_importance, meta, n_cc_dims):
         .sum()
         .reset_index()
     )
-
+    # Remove Strain-space if present (it's not in this panel)
     grouped = grouped[grouped["level_group"] != "Strain-space"].copy()
 
+    # Ensure consistent order
     desired_order = ["Chemistry", "Targets", "Networks", "Cells", "Clinics"]
     grouped["level_group"] = pd.Categorical(
         grouped["level_group"], categories=desired_order, ordered=True
     )
     grouped = grouped.sort_values("level_group")
 
-    x = np.arange(len(grouped))
+    # Build a nice colour palette
+    colors = plt.cm.Greens(np.linspace(0.4, 0.8, len(grouped)))
 
-    ax.bar(
-        x,
+    wedges, texts, autotexts = ax.pie(
         grouped["importance_gain_norm"],
-        color=PASTEL_BLUE,
-        edgecolor=BAR_EDGE_COLOR,
-        linewidth=BAR_EDGE_WIDTH,
+        labels=grouped["level_group"],
+        autopct="%1.1f%%",
+        colors=colors,
+        startangle=90,
+        textprops={"fontsize": 14},
+        wedgeprops={"edgecolor": "white", "linewidth": 0.5},
     )
+    ax.set_title(r"$\mathbf{B.}$  CC domain contributions", fontsize=TITLE_SIZE, pad=12)
 
-    ax.set_xticks(x)
-    ax.set_xticklabels(grouped["level_group"], rotation=20, ha="right", fontsize=14)
-    ax.set_ylabel("Total normalized gain importance")
-    ax.set_ylim(0, grouped["importance_gain_norm"].max() * 1.22)
-
-    ax.set_title(
-        r"$\mathbf{B.}$  CC domain contributions",
-        fontsize=TITLE_SIZE,
-        pad=8,
-    )
-
-    for xi, yi in zip(x, grouped["importance_gain_norm"]):
-        ax.text(xi, yi + 0.004, f"{yi:.1%}", ha="center", va="bottom", fontsize=14)
-
-    clean_axis(ax)
+    # Style the percentage text
+    for autotext in autotexts:
+        autotext.set_color("white")
+        autotext.set_fontweight("bold")
 
 
 # ==========================
@@ -439,8 +429,10 @@ def plot_panel_C(ax, df_importance, meta, n_cc_dims, top_n=10):
 # ==========================
 # Panel D – CC vs SS (exp06b, M2)
 # ==========================
-
-def plot_panel_D(ax, cc_vs_ss_summary: pd.DataFrame):
+def plot_panel_D_pie(ax, cc_vs_ss_summary):
+    """
+    Panel D: CC vs strain‑space gain contributions (M2 model), shown as a pie chart.
+    """
     df = cc_vs_ss_summary.copy()
 
     desired_order = ["CC", "SS"]
@@ -451,45 +443,24 @@ def plot_panel_D(ax, cc_vs_ss_summary: pd.DataFrame):
         "fraction_of_total_gain": [value_map.get(g, 0.0) for g in desired_order],
     })
 
-    colors = []
-    for g, v in zip(plot_df["group"], plot_df["fraction_of_total_gain"]):
-        if g == "SS" and v == 0:
-            colors.append("white")
-        elif g == "CC":
-            colors.append(MAIN_BLUE)
-        else:
-            colors.append(PASTEL_PEACH)
+    colors = ["#1f77b4", "#F7C9A9"]
 
-    bars = ax.bar(
-        plot_df["group"],
+    wedges, texts, autotexts = ax.pie(
         plot_df["fraction_of_total_gain"],
-        color=colors,
-        edgecolor=BAR_EDGE_COLOR,
-        linewidth=BAR_EDGE_WIDTH,
+        labels=plot_df["group"],
+        autopct="%1.1f%%",
+        colors=colors,
+        startangle=90,
+        textprops={"fontsize": 14},
+        wedgeprops={"edgecolor": "white", "linewidth": 0.5},
     )
+    ax.set_title(r"$\mathbf{D.}$  CC vs strain‑space gain", fontsize=TITLE_SIZE, pad=12)
 
-    ax.set_ylabel("Fraction of total gain importance")
-    ax.set_ylim(0, 1.10)
+    # Style the percentage text
+    for autotext in autotexts:
+        autotext.set_color("white")
+        autotext.set_fontweight("bold")
 
-    for bar, v in zip(bars, plot_df["fraction_of_total_gain"]):
-        x = bar.get_x() + bar.get_width() / 2
-        y_text = v + 0.025 if v > 0 else 0.025
-        ax.text(
-            x,
-            y_text,
-            f"{v*100:.1f}%",
-            ha="center",
-            va="bottom",
-            fontsize=BAR_LABEL_SIZE,
-        )
-
-    ax.set_title(
-        r"$\mathbf{D.}$  CC vs strain-space gain",
-        fontsize=TITLE_SIZE,
-        pad=8,
-    )
-
-    clean_axis(ax)
 
 
 # ==========================
@@ -522,9 +493,9 @@ def main():
     axD = fig.add_subplot(gs[1, 1])
 
     plot_panel_A(axA, df_imp_exp06d, meta, n_cc_dims, top_n=10)
-    plot_panel_B(axB, df_imp_exp06d, meta, n_cc_dims)
+    plot_panel_B_pie(axB, df_imp_exp06d, meta, n_cc_dims)
     plot_panel_C(axC, df_imp_exp06d, meta, n_cc_dims, top_n=10)
-    plot_panel_D(axD, cc_vs_ss_summary)
+    plot_panel_D_pie(axD, cc_vs_ss_summary)
 
     fig.subplots_adjust(left=0.24, right=0.98, top=0.94, bottom=0.09)
 
