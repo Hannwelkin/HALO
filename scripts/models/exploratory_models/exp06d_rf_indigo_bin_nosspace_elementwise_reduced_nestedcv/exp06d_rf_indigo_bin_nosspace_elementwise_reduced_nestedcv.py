@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Experiment: exp06d_rf_bin_nosspace_elementwise_reduced_nestedcv (HALO — RF baseline)
+Experiment: exp06d_rf_indigo_bin_nosspace_elementwise_reduced_nestedcv (HALO — RF baseline)
 
 Purpose
 This is a controlled algorithm-swap baseline for HALO, used to benchmark
-against CoSynE and INDIGO (both Random Forest-based methods), while holding
-everything else in HALO's pipeline constant: same dataset, same elementwise
-CC features, same feature selection procedure, same nested CV protocol
+against INDIGO (Random Forest-based), and only D3 sublevel of ChemicalChecker
+while holding everything else in HALO's pipeline constant: same dataset, same 
+feature selection procedure, same nested CV protocol
 (CV1: drug-pair held-out, 5 outer folds x 3 inner folds x 32 sampled configs).
 
 Config
@@ -143,14 +143,14 @@ def main():
     corr_min = 0.01
     keep_top_frac = 0.30
 
-    cc_path = CC_FEATURES / "cc_features_concat_25x128.csv"
+    cc_path = CC_FEATURES / "cc_features_d3_only.csv"
     combos_path = PROCESSED / "halo_training_dataset.csv"
 
-    out_dir = MODEL_RESULTS / "exp06d_rf_bin_nosspace_elementwise_reduced_nestedcv"
+    out_dir = MODEL_RESULTS / "exp06d_rf_indigo_bin_nosspace_elementwise_reduced_nestedcv"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     print(
-        "\n=== EXP06d — Random Forest baseline (for CoSynE/INDIGO comparison) ===\n"
+        "\n=== EXP06d — Random Forest baseline (for INDIGO comparison) ===\n"
     )
     print("Output dir :", out_dir)
 
@@ -247,7 +247,7 @@ def main():
         """
         Random Forest hyperparameter search space, chosen to mirror the
         approximate compute budget of exp06d's LightGBM search (32 sampled
-        configs) rather than to exactly replicate CoSynE/INDIGO's own
+        configs) rather than to exactly replicate INDIGO's own
         (unreported) tuning procedures.
         """
         # NOTE: rng.choice() on a mixed-type Python list silently upcasts
